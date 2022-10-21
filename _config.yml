@@ -24,8 +24,30 @@ description: >- # this means to ignore newlines until "baseurl:"
   Whos is Leo and what has he done?
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.leo.sh" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username:
-github_username:
+twitter_username: leodonethat
+github_username: leodonethat
+
+author:
+  name: "Your Name"
+  avatar: "/images/bio-photo.jpg"
+  bio: "Been **there**, done **that**."
+  location: "Somewhere"
+  links:
+    - label: "leo.sh"
+      icon: "fas fa-fw fa-link"
+      url: "https://leo.sh"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin-in"
+      url: "https://www.linkedin.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/mmistakes"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://instagram.com/mmistakes"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/mmistakes"
 
 # Build settings
 #theme: minima
@@ -36,6 +58,48 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+
+atom_feed:
+  hide: true
+
+search: true
+lunr:
+  search_within_pages: true
+
+social:
+  type: Person
+  name: leodonethat
+  links:
+    - "https://twitter.com/yourTwitter"
+    - "https://www.facebook.com/yourFacebook"
+    - "https://instagram.com/yourProfile"
+    - "https://www.linkedin.com/in/yourprofile"
+
+include:
+  - _pages
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: false
+
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
