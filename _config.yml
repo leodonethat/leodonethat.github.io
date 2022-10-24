@@ -40,7 +40,7 @@ author:
       url: "mailto:leodonethat@gmail.com"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin-in"
-      url: "https://www.linkedin.com/in/leo-franco-99b91411/"
+      url: "https://www.linkedin.com/in/leo-franco-zh/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/leodonethat/"
@@ -73,7 +73,7 @@ social:
   type: Person
   name: leodonethat
   links:
-    - "https://www.linkedin.com/in/leo-franco-99b91411/"
+    - "https://www.linkedin.com/in/leo-franco-zh/"
     - "https://github.com/leodonethat/"
     - "https://instagram.com/leobeenthere"
 #    - "https://twitter.com/leodonethat"
