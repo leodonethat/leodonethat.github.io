@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Leo's home
+title: Leo Franco
 email: leodonethat@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Whos is Leo and what has he done?
@@ -28,31 +28,34 @@ twitter_username: leodonethat
 github_username: leodonethat
 
 author:
-  name: "Your Name"
-  avatar: "/images/bio-photo.jpg"
+  name: "Leo Franco"
+  avatar: "/images/leodonethat_sq.png"
   bio: "Been **there**, done **that**."
-  location: "Somewhere"
   links:
     - label: "leo.sh"
       icon: "fas fa-fw fa-link"
       url: "https://leo.sh"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:leodonethat@gmail.com"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin-in"
-      url: "https://www.linkedin.com/"
+      url: "https://www.linkedin.com/in/leo-franco-99b91411/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/mmistakes"
+      url: "https://github.com/leodonethat/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/mmistakes"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/mmistakes"
+      url: "https://instagram.com/leobeenthere"
+
+# Site Footer
+footer:
 
 # Build settings
 #theme: minima
 #theme: minimal-mistakes-jekyll
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+minimal_mistakes_skin: "default"
 
 plugins:
   - jekyll-feed
@@ -70,10 +73,10 @@ social:
   type: Person
   name: leodonethat
   links:
-    - "https://twitter.com/yourTwitter"
-    - "https://www.facebook.com/yourFacebook"
-    - "https://instagram.com/yourProfile"
-    - "https://www.linkedin.com/in/yourprofile"
+    - "https://www.linkedin.com/in/leo-franco-99b91411/"
+    - "https://github.com/leodonethat/"
+    - "https://instagram.com/leobeenthere"
+#    - "https://twitter.com/leodonethat"
 
 include:
   - _pages
@@ -88,7 +91,7 @@ defaults:
       author_profile: true
       read_time: true
       comments: false
-      share: true
+      share: false
       related: false
 
 defaults:
