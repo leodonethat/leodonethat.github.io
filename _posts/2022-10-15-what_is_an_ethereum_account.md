@@ -1,7 +1,9 @@
 ---
 title:  "What is an Ethereum account?"
 date:   2022-10-15 13:00:00 +0200
+toc: false
 categories: blockchain
+tags: blockchain math
 ---
 
 Something fun about being new to a topic is giving yourself permission to ask silly questions. In my case, being new to the blockchain world one of my first questions was: what exactly is an Ethereum account?
