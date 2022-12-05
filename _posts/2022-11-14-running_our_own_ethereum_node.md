@@ -1,6 +1,6 @@
 ---
 title:  "Running our own Ethereum node"
-date:   2022-10-15 13:00:00 +0200
+date:   2022-11-14 13:00:00 +0200
 toc: true
 toc_sticky: true
 categories: blockchain
@@ -13,17 +13,17 @@ I started with the [official documentation](https://ethereum.org/en/run-a-node/)
 
 The first question I had to ask myself is do I really want to install a full node? would a different solution be enough.
 
-The main objective for me installing a node is to learn more about the technology so doing everything from scratch seems like a good way to do so. In addition to learning about it, nother objective I have is to be able to do data analysis with all the information publicly available on the blockchain. It seems ideal to be able to download a full history of transactions and play with them.
+The main objective for me installing a node is to learn more about the technology so doing everything from scratch seems like a good way to do so. In addition to learning about it, another objective I have is to be able to do data analysis with all the information publicly available on the blockchain. It seems ideal to be able to download a full history of transactions and play with them.
 
 # Options
 There are other ways to get access to the blockchain besides running your own node. If the amount of data you want to process is small or you have a very well defined use case you want to try I probably wouldn't recommend running your own node. To make development faster I would use one of the companies specializing in blockchain infrastructure or I would run a managed node on the cloud. I don't have much experience with them so I won't live a list pros and cons. I will only mention a few: alchemy, infura, quicknode and blockdaemon. Note that at the time of the writing, alchemy is valued at 10B and aims to become the aws of blockchain. These aren't really small companies anymore.
 
-Coming back to our humble objective: run an etheruem node and do some interesting data analysis.
+Coming back to our humble objective: run an Ethereum node and do some interesting data analysis.
 
 I learned there are [three different types of nodes](https://ethereum.org/en/developers/docs/nodes-and-clients/) you can run:
 * **Light**: this node downloads only block headers with a summary of the contents in a block. It can't participate in consensus and still needs to connect to a full node to get its information. This option doesn't look very interesting.
 * **Full**: this is closer to what we were looking for. It participates in block validation, provides data on request and stores blockchain data. The caveat with this type of node is that it doesn't store a full record of transactions, it only stores the most recent 128 blocks. We could get started with this one but the data analysis would be limited to only the last 128 blocks plus if those blocks keep changing our results won't be easily reproducible.
-* **Archive**: a full node with the complete history of the blockchain. This is exactly what we were looking for! The complete set of transaction in ethereum since the very beginning.
+* **Archive**: a full node with the complete history of the blockchain. This is exactly what we were looking for! The complete set of transactions in Ethereum since the very beginning.
 
 # Blockchain clients
 
@@ -35,7 +35,7 @@ Here we get to our next decision, which client do we use? it turns out there are
 
 I decided to go with Erigon and will install that one.
 
-A small complication here is that my laptop doesn't have enough space to store the extra terabytes needed. I did some reseach and found a really nice portable drive on amazon: [sandisk extreme portable ssd 4TB](https://www.amazon.com/SanDisk-4TB-Extreme-Portable-SDSSDE61-4T00-G25/dp/B08RX4QKXS). It's the biggest external hard drive I have found so far (4TB) and I am extreamly impressed by its physcial size. It's tiny! I didn't pay attention when I ordered it and was so surprised when I received it. It's about 10cm long and 1cm thick.
+A small complication here is that my laptop doesn't have enough space to store the extra terabytes needed. I did some research and found a really nice portable drive on amazon: [sandisk extreme portable ssd 4TB](https://www.amazon.com/SanDisk-4TB-Extreme-Portable-SDSSDE61-4T00-G25/dp/B08RX4QKXS). It's the biggest external hard drive I have found so far (4TB) and I am extremely impressed by its physical size. It's tiny! I didn't pay attention when I ordered it and was so surprised when I received it. It's about 10cm long and 1cm thick.
 
 ---
 
@@ -179,6 +179,10 @@ teku \
     --network=mainnet
 ```
 
+---
+
+# Syncing
+
 At this point we have our Ethereum node up and running 🥳. The next step is waiting for it to sync. Be ready for it to take a veeeeeeeery long time. We are talking about days if you have a solid internet connection.
 
 We can use the `eth_syncing` command to see how we are doing. Here we note that we are currently at node `0x0`. This is definetly take a while.
@@ -190,4 +194,61 @@ We can use the `eth_syncing` command to see how we are doing. Here we note that 
 {"jsonrpc":"2.0","id":51,"result":{"currentBlock":"0x0","highestBlock":"0xe5ab0f","stages":[{"stage_name":"Headers","block_number":"0xe5ab0f"},{"stage_name":"BlockHashes","block_number":"0xe4e1bf"},{"stage_name":"Bodies","block_number":"0xe4e1bf"},{"stage_name":"Senders","block_number":"0xe4e1bf"},{"stage_name":"Execution","block_number":"0x0"},{"stage_name":"Translation","block_number":"0x0"},{"stage_name":"HashState","block_number":"0x0"},{"stage_name":"IntermediateHashes","block_number":"0x0"},{"stage_name":"AccountHistoryIndex","block_number":"0x0"},{"stage_name":"StorageHistoryIndex","block_number":"0x0"},{"stage_name":"LogIndex","block_number":"0x0"},{"stage_name":"CallTraces","block_number":"0x0"},{"stage_name":"TxLookup","block_number":"0x0"},{"stage_name":"Finish","block_number":"0x0"}]}}
 ```
 
-Once the node finishes syncing we will be able to interact with the Ethereum blockchain. I suggest reading more about the [JSON-RPC interface](https://ethereum.org/en/developers/docs/apis/json-rpc/) to see what commands are available.
+Be ready to wait for a loooooooog time during the first sync. I didn't run it consistently so it's hard to estimate but I would say at least a few weeks. Once you the syncing is done you should get the follwing answer from the command above.
+
+``` bash
+{"jsonrpc":"2.0","id":1,"result":false}
+```
+
+# Testing our node
+
+Since my main objective of running a node is to do analytics. I do not need it to be syncing all the time. One option
+is t use the option `--sync.loop.throttle` when launching erigon to specify the timing between syncs.
+
+Another option is to run only the [rpcdaemon](https://github.com/ledgerwatch/erigon/blob/devel/cmd/rpcdaemon/README.md).
+
+``` bash
+$ cd eth/erigon
+erigon$ make rpcdaemon
+Building rpcdaemon
+Run "eth/erigon/build/bin/rpcdaemon" to launch rpcdaemon.
+```
+
+```
+./build/bin/rpcdaemon --datadir mainnet --http.api=eth,erigon,web3,net,debug,trace,txpool
+```
+
+One more trick (the one I ended up using) is that after the initial sync we can switch off
+the consensus layer (Teku) and leave only the execution layer (Erigon). Like that it can answer
+our requests but it will not be downloading more data.
+
+I suggest reading more about the [JSON-RPC interface](https://ethereum.org/en/developers/docs/apis/json-rpc/) to see what commands are available.
+
+``` bash
+curl -H 'Content-Type: application/json'  -X POST --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x3f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be", "latest"],"id":1}' 127.0.0.1:8545
+
+{"jsonrpc":"2.0","id":1,"result":"0x17a3ea3eb70b228"}
+```
+
+The answer `0x17a3ea3eb70b228`is `106466414947250728` in decimal but we have to remember this is denominated in `wei` which is the smallest unit of measurement for ether (10^18 wei is one ether). Which means in ether we have `0.106466414947250728` and at today's price of `$1,259.75` it means this address has a total balance of `$134.12`and it's something we can double check in [etherscan](https://etherscan.io/address/0x3f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be)
+
+![etherscan]({{ site.url }}{{ site.baseurl }}/assets/images/etherscan_screenshot.png){:width="100%"}{:.align-center}
+
+
+This is really really cool, we have or very own Ethereum portal!!
+
+# Acknowledgements
+
+To be honest, this was a lot harder than expected. It took quite a bit of reading and trial and error.
+I can see why platforms like Infura and Alchemy have gotten so popular. The idea of spinning your own node
+within minutes is very very appealing.
+
+Some resources were super helpful, for instance Magnus' post:
+* [How to set up Erigon, Erigon’s RPC and TrueBlocks (scrape and API) as services](https://magnushansson.xyz/blog_posts/crypto_defi/2022-01-10-Erigon-Trueblocks)
+
+There was also Thomas':
+* [Building Your Own Ethereum Archive Node](https://tjayrush.medium.com/building-your-own-ethereum-archive-node-72c014affc09)
+
+Plus Thomas Jay is the developer behind [TrueBlocks](https://trueblocks.io/) and he was super nice and friendly in their discord instance.
+
+Another super help helpful person was Alex Sharov, developer of [erigon](https://github.com/ledgerwatch/erigon), who was also super helpful on discord.

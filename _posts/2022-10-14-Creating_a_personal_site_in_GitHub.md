@@ -4,7 +4,7 @@ date:   2022-10-14 13:00:00 +0200
 toc: true
 toc_sticky: true
 categories: personal
-tags: personal portfolio development
+tags: development personal git
 ---
 
 I have been thinking about creating a personal site for a while and now that I have a little more time in my hands I decided to go a head and do it. The fastest way to get something done is to actually getting started on it :D.
@@ -15,7 +15,7 @@ The easiest option would be to use WordPress.com given my familiarity with the p
 
 The main feature I want to have is version control and I want to separate the content from the visualization. I would like that editing the website feels similar to editing a program.
 
-Considering that, the first thing to came to mind was to take a look at GitHub. It already has everything a developer needs and I am evry familiar with it. Let's head to [pages.github.com](https://pages.github.com/).
+The first thing that came to mind was to take a look at GitHub. It already has everything a developer needs and I am every familiar with it. Let's head to [pages.github.com](https://pages.github.com/).
 
 # Requirements
 

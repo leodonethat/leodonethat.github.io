@@ -1,6 +1,16 @@
 ---
 permalink: /about/
-title: About Page
+title: Hello there!
 ---
 
-Body of the about page
+My name is Leo. I was a geeky kid from Colombia who grew up playing video games and tinkering with computers. I learned how to program when I was 13 and never looked back. At age 16 I started studying computer science and curiosity led me to a variety of topics: abstract graph theory, algorithms, programming languages, digital logic, solid-state and quantum physics. I wanted to know everything about computers! Not only the rules of boolean operators but also how to build logic gates. I quickly realized it's hard to learn everything at once. I also realized soldering is a lot harder than drawing diagrams — software was so much easier than circuit boards! I settled on computer science as my major and kept taking physics as a hobby because there was such a beauty to it.
+
+My ongoing interest in physics came in pretty handy as I started a junior fellowship at [CERN](https://home.web.cern.ch/), the largest laboratory for particle physics. While there, I worked on [ROOT](https://root.cern/), an internal data analysis framework. Looking back, I'm sure that's where my love of data in all shapes and forms also began. Working with data was a delight, and the more opportunities I had to do so the better. I'm proud of the small contribution I made to help humans better understand our world — however the work I was doing had a direct impact on very few people's day-to-day lives.
+
+So, I decided to go out into the real world and work in finance. (When living in Switzerland, finance is considered the real world). Seeing how the data I worked with represented actual dollars was mesmerizing. It was almost like a video game. I learned about financial instruments and derivatives. I learned how to turn a world view into a bet, with any kind of payout profile. I saw the dangers of leverage and the virtues of hedging. I saw a broker crash for misusing customers' deposits and saw the Swiss Franc lose its peg to the Euro. It's amazing how finance can be an incredible force for change and development, while at the same time can have bleak implications when mishandled.
+
+Although finance was fun, I wanted to do something that more directly helped people. That's when I joined [Automattic](https://automattic.com) (the parent company of [WordPress.com](https://wordpress.com/), [WooCommerce](https://woocommerce.com/), [Tumblr](https://www.tumblr.com/) and others), where the mission is "Making the web a better place."
+
+At Automattic, I've worked on all layers of the data stack (ingestion, transformation, visualization, and analysis). I've been a strong advocate for software engineering practices and have championed emerging tools and processes that supercharge our team's abilities. I've lead a talented group of people and enjoyed seeing them grow and develop. I've educated myself about more inclusive styles of leadership and I believe that people are the most fulfilled and productive when they're happy and feel heard, valued, and accomplished.
+
+I also believe that feeling fulfilled requires being masters of our own destiny. I'm passionate about remote work because I'm convinced we're at our best when we choose our own environments. It's thrilling to see geography and timezones become less and less important, more companies becoming fully distributed, and people embracing the advances in decentralization. I'm excited to contribute to this new wave of developments bringing greater flexibility and freedom to billions of people.
