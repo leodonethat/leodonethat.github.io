@@ -1,5 +1,5 @@
 ---
-title:  "What is your golden rule? ⚜️"
+title:  "What is your golden rule?"
 date:   2022-02-27 13:00:00 +0200
 toc: false
 toc_sticky: false
