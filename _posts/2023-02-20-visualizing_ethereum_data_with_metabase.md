@@ -29,7 +29,7 @@ gallery2:
 
 ---
 
-In previous posts saw how to [setup our own Ethereum node](({% post_url 2022-11-14-running_our_own_ethereum_node %})), how to [extract data from it](({% post_url 2023-01-22-using_airbyte_to_extract_data_from_ethereum %})) and [how to transform this data](({% post_url 2023-02-13-using_dbt_to_transform_ethereum_data %})). In this post we will continue with one of the most fun parts of data analytics, data visualization.
+In previous posts saw how to [setup our own Ethereum node](({% post_url 2022-11-14-running_our_own_ethereum_node %})), how to [extract data from it](({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %})) and [how to transform this data](({% post_url 2023-02-13-transforming_ethereum_data_with_dbt %})). In this post we will continue with one of the most fun parts of data analytics, data visualization.
 
 There are many business intelligence tools we could use. Commercially, two of the most well known are [Tableau](https://www.tableau.com/) (acquired by Salesforce) and [Looker](https://www.looker.com/) (acquired by Google). I love how intuitive and user friendly Looker. Choosing a paid tool is a great option when we are looking for an extra level of support and user experience.
 

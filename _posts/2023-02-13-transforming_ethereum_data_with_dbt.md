@@ -8,7 +8,7 @@ tags: blockchain ethereum development data stack
 published: true
 ---
 
-In a previous post we saw how to [extract data from Ethereum using Airbyte]({% post_url 2023-01-22-using_airbyte_to_extract_data_from_ethereum %}). Once we have our raw data in a database, we can transform it to suit our needs. In this case, we will use [dbt](https://www.getdbt.com/) for these transformations:
+In a previous post we saw how to [extract data from Ethereum with Airbyte]({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %}). Once we have our raw data in a database, we can transform it to suit our needs. In this case, we will use [dbt](https://www.getdbt.com/) for these transformations:
 
 * [Getting started with dbt Core](https://docs.getdbt.com/docs/get-started/getting-started-dbt-core)
 * [Install dbt with Docker](https://docs.getdbt.com/docs/get-started/docker-install)
@@ -139,7 +139,7 @@ This is excellent! our basic setup is working well and we are ready to do some r
 
 # Updating the logic
 
-Now it's time to take the [raw data we extracted with Airbyte](({% post_url 2023-01-22-using_airbyte_to_extract_data_from_ethereum %})) and transform it. This is where dbt truly shines!
+Now it's time to take the [raw data we extracted with Airbyte](({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %})) and transform it. This is where dbt truly shines!
 
 ## Understanding data from Airbyte
 
