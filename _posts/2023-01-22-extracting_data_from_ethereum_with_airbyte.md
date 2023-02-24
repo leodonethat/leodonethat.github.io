@@ -1,5 +1,5 @@
 ---
-title:  "Using Airbyte to extract data from Ethereum"
+title:  "Extracting data from Ethereum with Airbyte"
 date:   2023-01-22 13:00:00 +0200
 toc: true
 toc_sticky: true
@@ -18,8 +18,8 @@ gallery:
     title: "airbyte source"
 ---
 
-We have seen how to [run our own Ethereum node](({% post_url 2022-11-14-running_our_own_ethereum_node %}))
-and how to [access it through its API](({% post_url 2022-12-02-using-the-ethereum-api %})). In that scenario,
+We have seen how to [run our own Ethereum node]({% post_url 2022-11-14-running_our_own_ethereum_node %})
+and how to [access it through its API]({% post_url 2022-12-02-using-the-ethereum-api %}). In that scenario,
 we used Python to make API calls and saw the output in the terminal. An alternative to writing custom python
 scripts for data ingestion is to use a third-party tool.
 

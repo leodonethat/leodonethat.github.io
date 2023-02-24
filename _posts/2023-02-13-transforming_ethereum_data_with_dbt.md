@@ -1,5 +1,5 @@
 ---
-title:  "Using dbt to transform Ethereum data"
+title:  "Transforming Ethereum data with dbt"
 date:   2023-02-13 13:00:00 +0200
 toc: true
 toc_sticky: true
@@ -139,7 +139,7 @@ This is excellent! our basic setup is working well and we are ready to do some r
 
 # Updating the logic
 
-Now it's time to take the [raw data we extracted with Airbyte](({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %})) and transform it. This is where dbt truly shines!
+Now it's time to take the [raw data we extracted with Airbyte]({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %}) and transform it. This is where dbt truly shines!
 
 ## Understanding data from Airbyte
 
