@@ -8,22 +8,26 @@ tags: blockchain ethereum development data stack
 published: true
 ---
 
-In a previous post we saw how to [extract data from Ethereum with Airbyte]({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %}). Once we have our raw data in a database, we can transform it to suit our needs. In this case, we will use [dbt](https://www.getdbt.com/) for these transformations:
+In a previous post, we explored how to [extract data from Ethereum using Airbyte]({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %}). Now that we have our raw data sitting in a database, it's time to start transforming it to meet our specific needs. In this particular case, we'll be using [dbt](https://www.getdbt.com/) for these transformations.
 
-* [Getting started with dbt Core](https://docs.getdbt.com/docs/get-started/getting-started-dbt-core)
+If you're new to dbt, this is a great starting point:
+
 * [Install dbt with Docker](https://docs.getdbt.com/docs/get-started/docker-install)
+* [Getting started with dbt Core](https://docs.getdbt.com/docs/get-started/getting-started-dbt-core)
+
+By following these steps, we are on our way to unlock the potential of dbt. Let's dive in and see what we can do!
 
 # Creating our first dbt project
 
-We will use docker as it will help us streamline deployment in the future.
+To streamline our deployment process in the future, we'll be making use of Docker. This will allow us to easily manage our dbt environment and ensure that everything is running smoothly. Here's how we'll get started:
 
-First we pull the right dbt image
+First, we'll need to pull the correct dbt image by running the following command:
 
 ```bash
 docker pull ghcr.io/dbt-labs/dbt-postgres
 ```
 
-Then we run the docker equivalent of the `dbt init <project_name>` command. This will create the skeleton for us to get started:
+Once that's done, we'll need to create a skeleton to work with. To do this, we'll run the Docker equivalent of the `dbt init <project_name>` command:
 
 ```bash
 mkdir dbt_projects
@@ -69,8 +73,7 @@ Happy modeling!
 
 ![dbt_profiles_yml]({{ site.url }}{{ site.baseurl }}/assets/images/dbt_profiles_yml.png){:width="100%"}{:.align-center}
 
-
-We update `profiles.yml` with the credentials for our local postgres database
+Next, we'll update the `profiles.yml` file with the credentials for our local Postgres database. 
 
 ```yaml
 dbt-ethereum:
@@ -87,12 +90,11 @@ dbt-ethereum:
       schema: dbt
 ```
 
-We can also update the file `dbt_project.yml` in the newly created `dbt_ethereum` directory.
+Finally, we'll want to take a look at the `dbt_project.yml` file in the newly created `dbt_ethereum` directory. This file can be updated to suit our specific needs and requirements.
 
 ![dbt_project_yml]({{ site.url }}{{ site.baseurl }}/assets/images/dbt_project_yml.png){:width="100%"}{:.align-center}
 
-
-Note that there are two example models in the directory `my_first_dbt_model.sql` and `my_second_dbt_model.sql`. They don't do much but they are perfect to make sure we are heading in the right direction.
+It's worth noting that there are two example models included in the directory: `my_first_dbt_model.sql` and `my_second_dbt_model.sql`. While they don't do much on their own, they're a great way to ensure that we're heading in the right direction and that everything is working as expected.
 
 # Running our dbt project
 
@@ -135,11 +137,11 @@ If we go to `postico` to see what is in our postgres database we will two new ta
 
 <br>
 
-This is excellent! our basic setup is working well and we are ready to do some real work.
+This is fantastic news! Our basic setup has been successful, and we can now move on to tackling more complex tasks.
 
 # Updating the logic
 
-Now it's time to take the [raw data we extracted with Airbyte]({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %}) and transform it. This is where dbt truly shines!
+Our next task is transforming the [raw data we extracted with Airbyte]({% post_url 2023-01-22-extracting_data_from_ethereum_with_airbyte %}), and this is where dbt really shines!
 
 ## Understanding data from Airbyte
 
@@ -186,11 +188,11 @@ limit 1
 
 ## Transforming data from Airbyte
 
-Our next step with `dbt` will be small (but significant!). We want to turn the json results in `_airbyte_data`into a table called `blocks`. Note we are also adding an extra field at the end with the number of transactions within this block.
+Let's move on to the next step in our dbt project, which may be small, but is certainly significant! Our goal is to create a table called `blocks` from the json results in `_airbyte_data`. Additionally, we will be adding an extra field at the end that shows the number of transactions within each block.
 
-Note: the operator `->` returns a json object while `->>` returns a string.
+It's important to note that the operator `->` returns a json object, while `->>` returns a string.
 
-File `blocks.sql` in the directory `models`:
+To achieve this, we will create a new file called `blocks.sql` in the `models` directory.
 
 ```sql
 with 
@@ -226,9 +228,9 @@ from
     blocks
 ```
 
-After running dbt again we should have the table `dbt.blocks` in our postgres database! 
+Once we run dbt again, the `dbt.blocks` table should now be available in our Postgres database!
 
-To keep our momentum, we will add a model `transactions` where we will unpack the data from the blocks above:
+In order to keep the momentum going, our next step will be to add a new model called `transactions`. This model will involve unpacking the data that we previously extracted and transformed in the `blocks` table.
 
 ```sql
 with 
@@ -265,9 +267,10 @@ from
     transactions
 ```
 
-There are two bits of new information here. The function `json_array_elements` that turns each one of the elements in a json array into its own row, plus the reference to the model `blocks` which is our first line of `dbt` syntax.
+This particular step introduces two new pieces of information. Firstly, we will be using the `json_array_elements` function which is capable of breaking down each element within a json array into its own individual row. Additionally, we will also be referencing the `blocks` model, which is our first instance of `dbt` syntax.
 
-I will delete the example models and re-run our dbt project with a full refresh. We will use the same docker command as before but changing the last part to:
+To proceed, we will delete any existing example models and initiate a full refresh of our dbt project. We can use the same docker command as before, but with a modified final part:
+
 
 ```bash
 run --full-refresh --project-dir /usr/app/dbt/dbt_ethereum
@@ -293,9 +296,11 @@ run --full-refresh --project-dir /usr/app/dbt/dbt_ethereum
 
 ## Writing our first data-shaping transformation
 
-Now we have a nice table of blockchain transactions. We can let our imagination roam free and do all sorts of analysis. To take a first step in that direction let's create a transformation to calculate daily aggregations (for the number of transactions plus the total value of it).
+We now have a neatly organized table containing all the blockchain transactions. With this data, we can explore various avenues of analysis and let our creativity run wild.
 
-Note we are using a custom user-defined function `hex_to_num` to make conversions easier. One idea is to use it in the previous transformations but for the purposes of this proof of concept we will keep the code as simple as possible.
+To take the first step in that direction, our next task will be to create a transformation that can calculate daily aggregations for the number of transactions, as well as their total value.
+
+It's important to note that we will be using a custom user-defined function called `hex_to_num` to simplify conversions. Although this function could have been used in previous transformations, we will keep the code as straightforward as possible for the purpose of this proof of concept.
 
 ```sql
 select
@@ -311,7 +316,7 @@ group by
     date_ymd
 ```
 
-We then run the docker version of `dbt run` again and take a look at our database with a quick query
+To proceed, we will run the docker version of `dbt run` once more. Once the process is complete, we can take a quick glance at our database by running a simple query.
 
 ```sql
 select *
@@ -323,12 +328,10 @@ order by date_ymd asc
 
 Fantastic! 🚀
 
-We now have a table easy to visualize with exactly what we need. We could access it with something like 
-JupyterHub if we want to use notebooks for data analysis or we can use a visualization tool like Metabase to build dashboards on top of it.
+We can now easily visualize the table with the required data. We have multiple options to access this table, such as using JupyterHub for data analysis via notebooks or using Metabase, a visualization tool, to create interactive dashboards.
 
-**Note**: for the purposes of this proof of concept, we assumed the underlying data is static and we process it all at once. That use case is
-fine for analytical purposes (when we want to study past behavior) but it doesn't paint the full picture of a blockchain. In order to productionize
-this pipeline, we have to process new blocks efficiently. We have to setup Airbyte to extract blocks from where it was last time it ran and we have to [update our dbt models to process only the data incrementally](https://docs.getdbt.com/docs/build/incremental-models).
+
+It's important to note that for this proof of concept, we assumed the underlying data is static and processed all of it at once. This approach is suitable for analytical purposes when we want to study past behavior. However, it doesn't provide the complete picture of a blockchain. To productionize this pipeline, we need to process new blocks efficiently. This involves setting up Airbyte to extract blocks from where it previously stopped and updating our dbt models to [process new data incrementally](https://docs.getdbt.com/docs/build/incremental-models).
 
 ---
 ---
